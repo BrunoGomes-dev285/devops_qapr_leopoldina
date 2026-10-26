@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sombra & Elegância: A Subcultura Gótica</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800;900&family=Cinzel+Decorative:wght@700&family=UnifrakturMaguntia&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        goth: {
+                            black: '#080608',
+                            darker: '#0e0b10',
+                            card: '#16111a',
+                            border: '#2a1e35',
+                            wine: '#58111a',
+                            crimson: '#8b0000',
+                            velvet: '#4a0e2e',
+                            purple: '#3b1254',
+                            lavender: '#a892bc',
+                            silver: '#c0c0c0',
+                            gold: '#bf9b30'
+                        }
+                    },
+                    fontFamily: {
+                        gothic: ['UnifrakturMaguntia', 'cursive'],
+                        cinzel: ['Cinzel', 'serif'],
+                        cinzelDeco: ['Cinzel Decorative', 'serif'],
+                        sans: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Pattern Overlay de Renda / Textura */
+        .goth-pattern {
+            background-color: #080608;
+            background-image: radial-gradient(#2a1e35 1px, transparent 1px), radial-gradient(#2a1e35 1px, #080608 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        /* Efeito de Borda Decorativa */
+        .goth-border {
+            border: 1px solid #2a1e35;
+            position: relative;
+        }
+        .goth-border::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            border: 1px solid rgba(139, 0, 0, 0.25);
+            pointer-events: none;
+        }
+
+        /* Molduras ornadas para cards */
+        .ornate-card {
+            background: linear-gradient(135deg, rgba(22, 17, 26, 0.95) 0%, rgba(14, 11, 16, 0.98) 100%);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(88, 17, 26, 0.15);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ornate-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.9), 0 0 25px rgba(139, 0, 0, 0.4);
+            border-color: #8b0000;
+        }
+
+        /* Animação do Brilho Carmesim */
+        @keyframes pulseCrimson {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+        .glow-effect {
+            animation: pulseCrimson 4s infinite ease-in-out;
+        }
+
+        /* Estilização da barra de rolagem */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080608;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b1254;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b0000;
+        }
+    </style>
+</head>
+<body class="bg-goth-black text-gray-300 font-sans antialiased goth-pattern selection:bg-goth-wine selection:text-goth-silver min-h-screen flex flex-col justify-between">
+
+    <!-- Navegação Superior -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-goth-black/90 backdrop-blur-md border-b border-goth-border/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <span class="text-3xl text-goth-crimson group-hover:text-goth-silver transition-colors duration-300">☥</span>
+                <span class="font-cinzelDeco text-xl sm:text-2xl text-goth-silver tracking-widest font-bold">Subcultura Gótica</span>
+            </a>
+            
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex items-center space-x-8 font-cinzel text-sm tracking-wider">
+                <a href="#historia" class="hover:text-goth-crimson transition-colors duration-200">História</a>
+                <a href="#estetica" class="hover:text-goth-crimson transition-colors duration-200">Moda & Estética</a>
+                <a href="#musica-literatura" class="hover:text-goth-crimson transition-colors duration-200">Música & Literatura</a>
+                <a href="#citacao" class="hover:text-goth-crimson transition-colors duration-200">Citações</a>
+            </div>
+
+            <!-- Botão Menu Mobile -->
+            <button id="mobile-menu-btn" class="md:hidden text-goth-silver hover:text-goth-crimson focus:outline-none text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-goth-darker border-b border-goth-border px-4 pt-2 pb-6 space-y-3 font-cinzel">
+            <a href="#historia" class="block py-2 text-goth-silver hover:text-goth-crimson">História</a>
+            <a href="#estetica" class="block py-2 text-goth-silver hover:text-goth-crimson">Moda & Estética</a>
+            <a href="#musica-literatura" class="block py-2 text-goth-silver hover:text-goth-crimson">Música & Literatura</a>
+            <a href="#citacao" class="block py-2 text-goth-silver hover:text-goth-crimson">Citações</a>
+        </div>
+    </nav>
+
+    <!-- Header Hero -->
+    <header class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Banner Atmosférico / Fundo -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1920&auto=format&fit=crop" 
+                 alt="Catedral Gótica na neblina" 
+                 class="w-full h-full object-cover opacity-25 filter grayscale contrast-125">
+            <div class="absolute inset-0 bg-gradient-to-t from-goth-black via-goth-black/70 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-goth-black/90 via-transparent to-goth-black/90"></div>
+        </div>
+
+        <!-- Conteúdo do Hero -->
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center my-auto py-12">
+            <div class="inline-block mb-4 text-goth-crimson text-4xl sm:text-5xl animate-pulse">
+                ✦ ☥ ✦
+            </div>
+            <h1 class="font-gothic text-5xl sm:text-7xl md:text-8xl text-goth-silver mb-6 tracking-wide drop-shadow-[0_5px_15px_rgba(139,0,0,0.5)] leading-tight">
+                Sombra & Elegância
+            </h1>
+            <p class="font-cinzel text-lg sm:text-2xl text-goth-lavender max-w-3xl mx-auto mb-10 tracking-widest uppercase font-light">
+                A Alma, a Arte e a Melancolia da Subcultura Gótica
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-5">
+                <a href="#historia" class="w-full sm:w-auto px-8 py-4 bg-goth-wine/80 hover:bg-goth-crimson text-goth-silver font-cinzel tracking-widest text-sm rounded-none border border-goth-crimson/50 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(139,0,0,0.6)] uppercase">
+                    Explorar Origens
+                </a>
+                <a href="#playlist-player" class="w-full sm:w-auto px-8 py-4 bg-transparent hover:bg-goth-purple/30 text-goth-silver font-cinzel tracking-widest text-sm rounded-none border border-goth-border hover:border-goth-purple transition-all duration-300 uppercase flex items-center justify-center gap-2">
+                    <i class="fas fa-music text-xs"></i> Ouvir Sintonia
+                </a>
+            </div>
+        </div>
+
+        <!-- Indicador de Scroll -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 text-center">
+            <a href="#historia" class="text-goth-lavender/60 hover:text-goth-crimson transition-colors duration-300">
+                <i class="fas fa-chevron-down text-2xl animate-bounce"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="space-y-32 py-16">
+
+        <!-- Seção: Origem e História -->
+        <section id="historia" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-cinzelDeco text-3xl sm:text-5xl text-goth-silver mb-4">Origem e História</h2>
+                <div class="w-24 h-1 bg-goth-crimson mx-auto"></div>
+                <p class="font-cinzel text-goth-lavender mt-4 text-sm tracking-wider uppercase">Do Pós-Punk ao Movimento Sombrio</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-gray-300 font-light leading-relaxed text-base sm:text-lg">
+                    <p class="first-letter:text-5xl first-letter:font-gothic first-letter:text-goth-crimson first-letter:float-left first-letter:mr-3">
+                        A subcultura gótica emergiu no final dos anos 1970 no Reino Unido, nascendo das cinzas do movimento punk. O que começou como uma vertente musical melancólica e introspectiva rapidamente se desdobrou em uma filosofia estética e estilo de vida duradouro.
+                    </p>
+                    <p>
+                        Clubes lendários como o <span class="text-goth-silver font-semibold">Batcave</span> em Londres tornaram-se o epicentro de uma nova tribo urbana. Jovens expressavam o descontentamento e a fascinante beleza do obscuro através do vestuário, da poesia e de sonoridades densas e atmosféricas.
+                    </p>
+                    
+                    <div class="border-l-2 border-goth-crimson pl-6 py-2 my-6 bg-goth-card/40 italic font-cinzel text-goth-silver">
+                        "A música gótica nunca foi apenas sobre a escuridão; foi sobre encontrar a luz poeticamente oculta dentro dela."
+                    </div>
+
+                    <p>
+                        Pioneiros como <span class="text-goth-silver">Bauhaus</span>, <span class="text-goth-silver">Siouxsie and the Banshees</span>, <span class="text-goth-silver">The Cure</span> e <span class="text-goth-silver">Sisters of Mercy</span> moldaram as estruturas sonoras com linhas de baixo hipnóticas, guitarras ecoantes e vocais dramaticamente carregados.
+                    </p>
+                </div>
+
+                <!-- Galeria / Moldura Histórica -->
+                <div class="relative">
+                    <div class="goth-border p-3 bg-goth-darker">
+                        <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=800&auto=format&fit=crop" 
+                             alt="Atmosfera Gótica e Pós-Punk" 
+                             class="w-full h-auto object-cover filter grayscale contrast-125 border border-goth-border">
+                    </div>
+                    <!-- Card Sobreposto -->
+                    <div class="mt-6 sm:mt-0 sm:absolute sm:-bottom-8 sm:-left-8 bg-goth-card border border-goth-border p-6 shadow-2xl max-w-md">
+                        <div class="flex items-center gap-4 mb-2">
+                            <i class="fas fa-record-vinyl text-2xl text-goth-crimson"></i>
+                            <h3 class="font-cinzel text-lg text-goth-silver font-semibold">Bela Lugosi's Dead</h3>
+                        </div>
+                        <p class="text-xs text-gray-400 font-sans">
+                            Lançado em 1979 pela banda Bauhaus, o single de 9 minutos é amplamente considerado o marco zero da música e subcultura gótica.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Moda e Estética -->
+        <section id="estetica" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-cinzelDeco text-3xl sm:text-5xl text-goth-silver mb-4">Moda & Estética</h2>
+                <div class="w-24 h-1 bg-goth-crimson mx-auto"></div>
+                <p class="font-cinzel text-goth-lavender mt-4 text-sm tracking-wider uppercase">Vertentes, Texturas e Adornos</p>
+            </div>
+
+            <!-- Grid de Vertentes -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Trad Goth -->
+                <div class="ornate-card goth-border p-6 rounded-none flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 overflow-hidden mb-6 border border-goth-border">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop" 
+                                 alt="Trad Goth" 
+                                 class="w-full h-full object-cover filter grayscale contrast-125 hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="font-cinzel text-xl text-goth-silver mb-2 font-bold flex items-center justify-between">
+                            Trad Goth <span class="text-xs font-normal text-goth-crimson">1980s</span>
+                        </h3>
+                        <p class="text-sm text-gray-400 font-light mb-4">
+                            Inspirado no pós-punk puro. Cabelos desfiados, maquiagem carregada, coturnos altos, couro, meias arrastão e camisas rasgadas.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-goth-border/50 text-xs text-goth-lavender flex items-center gap-2">
+                        <i class="fas fa-tag text-goth-crimson"></i> Couro, Maquiagem carregada
+                    </div>
+                </div>
+
+                <!-- Gótico Vitoriano / Romântico -->
+                <div class="ornate-card goth-border p-6 rounded-none flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 overflow-hidden mb-6 border border-goth-border">
+                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format&fit=crop" 
+                                 alt="Gótico Vitoriano" 
+                                 class="w-full h-full object-cover filter contrast-125 sepia-[.3] hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="font-cinzel text-xl text-goth-silver mb-2 font-bold flex items-center justify-between">
+                            Vitoriano <span class="text-xs font-normal text-goth-crimson">Romântico</span>
+                        </h3>
+                        <p class="text-sm text-gray-400 font-light mb-4">
+                            Inspiração na época vitoriana e literatura de terror clássica. Veludo denso, rendas sofisticadas, espartilhos, cartolas e luvas.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-goth-border/50 text-xs text-goth-lavender flex items-center gap-2">
+                        <i class="fas fa-tag text-goth-crimson"></i> Veludo, Espartilhos, Rendas
+                    </div>
+                </div>
+
+                <!-- Cyber Goth -->
+                <div class="ornate-card goth-border p-6 rounded-none flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 overflow-hidden mb-6 border border-goth-border">
+                            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=600&auto=format&fit=crop" 
+                                 alt="Cyber Goth" 
+                                 class="w-full h-full object-cover filter hue-rotate-270 contrast-125 hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="font-cinzel text-xl text-goth-silver mb-2 font-bold flex items-center justify-between">
+                            Cyber Goth <span class="text-xs font-normal text-goth-crimson">Industrial</span>
+                        </h3>
+                        <p class="text-sm text-gray-400 font-light mb-4">
+                            Fusão da estética sombria com ficção científica e música EBM/Industrial. Cores neon contrastantes, dreads sintéticos, óculos de proteção.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-goth-border/50 text-xs text-goth-lavender flex items-center gap-2">
+                        <i class="fas fa-tag text-goth-crimson"></i> Neons, Máscaras, Tubos
+                    </div>
+                </div>
+
+                <!-- Nu Goth -->
+                <div class="ornate-card goth-border p-6 rounded-none flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 overflow-hidden mb-6 border border-goth-border">
+                            <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=600&auto=format&fit=crop" 
+                                 alt="Nu Goth" 
+                                 class="w-full h-full object-cover filter grayscale contrast-125 hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="font-cinzel text-xl text-goth-silver mb-2 font-bold flex items-center justify-between">
+                            Nu Goth <span class="text-xs font-normal text-goth-crimson">Casual</span>
+                        </h3>
+                        <p class="text-sm text-gray-400 font-light mb-4">
+                            A Reinterpretação contemporânea. Minimalista, mesclando streetwear moderno com símbolos ocultistas, chapéus de aba larga e silhuetas soltas.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-goth-border/50 text-xs text-goth-lavender flex items-center gap-2">
+                        <i class="fas fa-tag text-goth-crimson"></i> Minimalismo, Símbolos
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Detalhes de Elementos e Acessórios -->
+            <div class="mt-16 bg-goth-darker border border-goth-border p-8">
+                <h3 class="font-cinzel text-2xl text-goth-silver mb-8 text-center">Elementos & Acessórios Icônicos</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 border border-goth-border/50 bg-goth-card/30">
+                        <div class="text-3xl text-goth-crimson mb-2">☥</div>
+                        <h4 class="font-cinzel text-goth-silver mb-1">Cruzes Ankh & Pratas</h4>
+                        <p class="text-xs text-gray-400">Símbolos de vida eterna e jóias prateadas trabalhadas detalhadamente.</p>
+                    </div>
+                    <div class="p-4 border border-goth-border/50 bg-goth-card/30">
+                        <div class="text-3xl text-goth-purple mb-2"><i class="fas fa-eye"></i></div>
+                        <h4 class="font-cinzel text-goth-silver mb-1">Maquiagem Marcante</h4>
+                        <p class="text-xs text-gray-400">Pele pálida contrastada com delineados dramáticos e batons escuros.</p>
+                    </div>
+                    <div class="p-4 border border-goth-border/50 bg-goth-card/30">
+                        <div class="text-3xl text-goth-wine mb-2"><i class="fas fa-[#8b0000]">👢</i></div>
+                        <h4 class="font-cinzel text-goth-silver mb-1">Calçados Pesados</h4>
+                        <p class="text-xs text-gray-400">Coturnos táticos, plataformas exageradas e fivelas metálicas.</p>
+                    </div>
+                    <div class="p-4 border border-goth-border/50 bg-goth-card/30">
+                        <div class="text-3xl text-goth-lavender mb-2"><i class="fas fa-[#a892bc]">🕸️</i></div>
+                        <h4 class="font-cinzel text-goth-silver mb-1">Tecidos Nobres</h4>
+                        <p class="text-xs text-gray-400">Veludo cinto, rendas detalhadas, cetim e tecidos transparentes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Música e Literatura -->
+        <section id="musica-literatura" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-cinzelDeco text-3xl sm:text-5xl text-goth-silver mb-4">Música & Literatura</h2>
+                <div class="w-24 h-1 bg-goth-crimson mx-auto"></div>
+                <p class="font-cinzel text-goth-lavender mt-4 text-sm tracking-wider uppercase">Inspirações Sonoras e Romantismo Sombrio</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Literatura Gótica -->
+                <div class="bg-goth-darker border border-goth-border p-8 relative overflow-hidden">
+                    <div class="absolute -right-8 -bottom-8 opacity-10 text-9xl text-goth-crimson font-gothic pointer-events-none">
+                        𝔊
+                    </div>
+                    <h3 class="font-cinzel text-2xl text-goth-silver mb-6 flex items-center gap-3">
+                        <i class="fas fa-book-dead text-goth-crimson"></i> Literatura Macabra
+                    </h3>
+                    <p class="text-gray-300 font-light mb-6 leading-relaxed">
+                        A subcultura carrega laços profundos com o Terror Gótico do século XVIII e XIX. Elementos de ruínas medievais, angústia existencial, o sublime e o mistério permeiam tanto os textos clássicos quanto as letras musicais.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="p-4 bg-goth-card/60 border-l-2 border-goth-purple">
+                            <h4 class="font-cinzel text-goth-silver font-bold">Edgar Allan Poe</h4>
+                            <p class="text-xs text-gray-400">Mestre dos contos de mistério, melancolia e obsessão. Obras como "O Corvo" moldaram o imaginário sombrio.</p>
+                        </div>
+                        <div class="p-4 bg-goth-card/60 border-l-2 border-goth-purple">
+                            <h4 class="font-cinzel text-goth-silver font-bold">Mary Shelley</h4>
+                            <p class="text-xs text-gray-400">Autora de "Frankenstein", obra fundamental que une o horror gótico ao nascimento da ficção científica.</p>
+                        </div>
+                        <div class="p-4 bg-goth-card/60 border-l-2 border-goth-purple">
+                            <h4 class="font-cinzel text-goth-silver font-bold">Bram Stoker</h4>
+                            <p class="text-xs text-gray-400">Criador do lendário "Drácula", imortalizando o fascínio gótico pelo vampirismo e a eternidade.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player de Áudio / Playlist Fictícia -->
+                <div id="playlist-player" class="bg-goth-darker border border-goth-border p-8 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-cinzel text-2xl text-goth-silver mb-6 flex items-center gap-3">
+                            <i class="fas fa-compact-disc text-goth-purple"></i> Sintonia das Sombras
+                        </h3>
+                        <p class="text-sm text-gray-400 mb-6">
+                            Selecione e simule a execução de clássicos da cena gótica e pós-punk mundial:
+                        </p>
+
+                        <!-- Player Widget UI -->
+                        <div class="bg-goth-card p-6 border border-goth-border mb-6">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-16 h-16 bg-goth-purple/40 border border-goth-border flex items-center justify-center text-goth-silver text-2xl">
+                                    <i class="fas fa-music text-goth-crimson"></i>
+                                </div>
+                                <div class="overflow-hidden">
+                                    <h4 id="current-song-title" class="font-cinzel text-goth-silver font-bold truncate">Bela Lugosi's Dead</h4>
+                                    <p id="current-song-artist" class="text-xs text-goth-lavender truncate">Bauhaus</p>
+                                    <span class="inline-block mt-1 text-[10px] bg-goth-wine/60 text-goth-silver px-2 py-0.5 border border-goth-crimson/30">Gothic Rock (1979)</span>
+                                </div>
+                            </div>
+
+                            <!-- Barra de Progresso Fictícia -->
+                            <div class="space-y-1 mb-4">
+                                <div class="w-full bg-goth-darker h-1.5 rounded-none overflow-hidden">
+                                    <div id="player-progress" class="bg-goth-crimson h-full w-1/3 transition-all duration-300"></div>
+                                </div>
+                                <div class="flex justify-between text-[10px] text-gray-500 font-mono">
+                                    <span id="player-time">02:15</span>
+                                    <span>09:36</span>
+                                </div>
+                            </div>
+
+                            <!-- Controles -->
+                            <div class="flex items-center justify-center gap-6 text-goth-silver">
+                                <button onclick="prevSong()" class="hover:text-goth-crimson transition-colors"><i class="fas fa-step-backward text-sm"></i></button>
+                                <button id="play-btn" onclick="togglePlay()" class="w-10 h-10 bg-goth-wine hover:bg-goth-crimson text-goth-silver rounded-full flex items-center justify-center transition-colors shadow-lg">
+                                    <i class="fas fa-play text-xs"></i>
+                                </button>
+                                <button onclick="nextSong()" class="hover:text-goth-crimson transition-colors"><i class="fas fa-step-forward text-sm"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Faixas -->
+                        <div class="space-y-2 text-xs font-cinzel">
+                            <div onclick="selectSong(0)" class="song-item p-2.5 bg-goth-black/60 border border-goth-border/50 hover:border-goth-crimson flex justify-between items-center cursor-pointer text-goth-silver transition-colors">
+                                <span>1. Bauhaus - Bela Lugosi's Dead</span>
+                                <span class="text-gray-500">09:36</span>
+                            </div>
+                            <div onclick="selectSong(1)" class="song-item p-2.5 bg-goth-black/60 border border-goth-border/50 hover:border-goth-crimson flex justify-between items-center cursor-pointer text-goth-silver transition-colors">
+                                <span>2. Siouxsie and the Banshees - Spellbound</span>
+                                <span class="text-gray-500">03:17</span>
+                            </div>
+                            <div onclick="selectSong(2)" class="song-item p-2.5 bg-goth-black/60 border border-goth-border/50 hover:border-goth-crimson flex justify-between items-center cursor-pointer text-goth-silver transition-colors">
+                                <span>3. The Cure - A Forest</span>
+                                <span class="text-gray-500">05:55</span>
+                            </div>
+                            <div onclick="selectSong(3)" class="song-item p-2.5 bg-goth-black/60 border border-goth-border/50 hover:border-goth-crimson flex justify-between items-center cursor-pointer text-goth-silver transition-colors">
+                                <span>4. Sisters of Mercy - Lucretia My Reflection</span>
+                                <span class="text-gray-500">04:57</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Seção: Gerador de Citações Góticas (Interatividade JS) -->
+        <section id="citacao" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-goth-card border border-goth-border p-8 sm:p-12 text-center relative ornate-card">
+                <div class="text-4xl text-goth-crimson mb-4 font-gothic">“</div>
+                
+                <p id="quote-text" class="font-cinzel text-xl sm:text-2xl text-goth-silver italic mb-6 min-h-[80px] flex items-center justify-center">
+                    "Tudo o que vemos ou parecemos não passa de um sonho dentro de um sonho."
+                </p>
+
+                <p id="quote-author" class="font-sans text-sm tracking-widest text-goth-lavender uppercase mb-8">
+                    — Edgar Allan Poe
+                </p>
+
+                <button onclick="generateNewQuote()" class="px-6 py-3 bg-goth-purple/40 hover:bg-goth-wine text-goth-silver border border-goth-border hover:border-goth-crimson font-cinzel text-xs tracking-widest uppercase transition-all duration-300">
+                    <i class="fas fa-feather-alt mr-2"></i> Nova Citação
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-goth-darker border-t border-goth-border/80 mt-20 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <div class="text-3xl text-goth-crimson mb-4">☥</div>
+            
+            <h3 class="font-cinzelDeco text-xl text-goth-silver mb-2">Subcultura Gótica</h3>
+            <p class="font-cinzel text-xs text-goth-lavender tracking-widest uppercase mb-6">
+                Elegância • Poesia • Melancolia
+            </p>
+
+            <div class="flex justify-center space-x-6 text-goth-silver mb-8 text-lg">
+                <a href="#" class="hover:text-goth-crimson transition-colors"><i class="fab fa-spotify"></i></a>
+                <a href="#" class="hover:text-goth-crimson transition-colors"><i class="fas fa-book"></i></a>
+                <a href="#" class="hover:text-goth-crimson transition-colors"><i class="fas fa-[#8b0000]">🖤</i></a>
+            </div>
+
+            <div class="border-t border-goth-border/40 pt-6 text-xs text-gray-500 font-sans">
+                <p>Criado para celebrar a beleza estética e cultural da cena gótica.</p>
+                <p class="mt-1">Memento Mori • Amor Fati</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- JavaScript para Interatividade -->
+    <script>
+        // Menu Mobile Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fechar menu ao clicar em links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Gerador de Citações Góticas
+        const quotes = [
+            {
+                quote: "Tudo o que vemos ou parecemos não passa de um sonho dentro de um sonho.",
+                author: "Edgar Allan Poe"
+            },
+            {
+                quote: "Há uma beleza poética na melancolia que olhos comuns jamais conseguirão contemplar.",
+                author: "Autor Desconhecido"
+            },
+            {
+                quote: "Eu não tinha medo da escuridão até perceber que a escuridão estava dentro de mim.",
+                author: "Mary Shelley"
+            },
+            {
+                quote: "A escuridão não é a ausência de luz, mas a presença de mistérios não revelados.",
+                author: "Pensamento Vitoriano"
+            },
+            {
+                quote: "Dance ao som do seu próprio lamento e vista sua sombra com orgulho.",
+                author: "Sintonia Pós-Punk"
+            },
+            {
+                quote: "Monstros são reais, e fantasmas são reais também. Eles vivem dentro de nós e, às vezes, eles vencem.",
+                author: "Stephen King"
+            }
+        ];
+
+        function generateNewQuote() {
+            const quoteText = document.getElementById('quote-text');
+            const quoteAuthor = document.getElementById('quote-author');
+            
+            // Suave transição de opacidade
+            quoteText.style.opacity = '0';
+            quoteAuthor.style.opacity = '0';
+
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * quotes.length);
+                const selected = quotes[randomIndex];
+                
+                quoteText.textContent = `"${selected.quote}"`;
+                quoteAuthor.textContent = `— ${selected.author}`;
+
+                quoteText.style.opacity = '1';
+                quoteAuthor.style.opacity = '1';
+            }, 300);
+        }
+
+        // Transição suave CSS para as citações
+        document.getElementById('quote-text').style.transition = 'opacity 0.3s ease';
+        document.getElementById('quote-author').style.transition = 'opacity 0.3s ease';
+
+        // Player de Áudio Simulado
+        const songs = [
+            { title: "Bela Lugosi's Dead", artist: "Bauhaus", genre: "Gothic Rock (1979)", duration: "09:36" },
+            { title: "Spellbound", artist: "Siouxsie and the Banshees", genre: "Post-Punk (1981)", duration: "03:17" },
+            { title: "A Forest", artist: "The Cure", genre: "Gothic Rock / Post-Punk (1980)", duration: "05:55" },
+            { title: "Lucretia My Reflection", artist: "Sisters of Mercy", genre: "Gothic Rock (1987)", duration: "04:57" }
+        ];
+
+        let currentSongIndex = 0;
+        let isPlaying = false;
+        let playInterval = null;
+
+        function updatePlayerUI() {
+            const song = songs[currentSongIndex];
+            document.getElementById('current-song-title').textContent = song.title;
+            document.getElementById('current-song-artist').textContent = song.artist;
+            
+            // Destacar na lista
+            const items = document.querySelectorAll('.song-item');
+            items.forEach((item, idx) => {
+                if (idx === currentSongIndex) {
+                    item.classList.add('border-goth-crimson', 'bg-goth-wine/20');
+                } else {
+                    item.classList.remove('border-goth-crimson', 'bg-goth-wine/20');
+                }
+            });
+        }
+
+        function togglePlay() {
+            const playBtn = document.getElementById('play-btn');
+            const progressBar = document.getElementById('player-progress');
+            
+            isPlaying = !isPlaying;
+
+            if (isPlaying) {
+                playBtn.innerHTML = '<i class="fas fa-pause text-xs"></i>';
+                let progress = 33;
+                playInterval = setInterval(() => {
+                    progress = (progress + 1) % 100;
+                    progressBar.style.width = `${progress}%`;
+                }, 400);
+            } else {
+                playBtn.innerHTML = '<i class="fas fa-play text-xs"></i>';
+                clearInterval(playInterval);
+            }
+        }
+
+        function selectSong(index) {
+            currentSongIndex = index;
+            updatePlayerUI();
+            if (!isPlaying) {
+                togglePlay();
+            }
+        }
+
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            updatePlayerUI();
+        }
+
+        function prevSong() {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            updatePlayerUI();
+        }
+
+        // Inicializar Player
+        updatePlayerUI();
+    </script>
+</body>
+</html>
