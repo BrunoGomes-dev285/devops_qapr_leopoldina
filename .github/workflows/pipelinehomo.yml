@@ -2,9 +2,9 @@ name: Ambiente de Homologação
 
 on:
   push:
-    branches: [ "BrunoGomes-dev285-patch-1" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "BrunoGomes-dev285-patch-1" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -54,4 +54,4 @@ jobs:
             sudo docker rm homo_leopoldina 2>/dev/null || true
 
             # Publicar novo container
-            sudo docker run --name homo_leopoldina -d -p 80:8080 ngaloni/homo_leopoldina:latest
+            sudo docker run --name homo_leopoldina -d -p 80:80 brunogomessantana/homo_leopoldina:latest
