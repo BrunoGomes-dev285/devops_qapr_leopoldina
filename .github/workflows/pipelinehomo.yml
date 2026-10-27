@@ -2,9 +2,9 @@ name: Ambiente de Homologação
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "BrunoGomes-dev285-patch-1" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "BrunoGomes-dev285-patch-1" ]
 
 jobs:
   build:
